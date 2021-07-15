@@ -5,7 +5,7 @@
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2021-06-12T08:00:17.411Z
+ * Date: 2021-07-15T12:45:04.188Z
  */
 
 (function (global, factory) {
@@ -1217,6 +1217,7 @@
 
   var render = {
     render: function render() {
+      var preview = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       this.initContainer();
       this.initCanvas();
       this.initCropBox();
@@ -1224,6 +1225,10 @@
 
       if (this.cropped) {
         this.renderCropBox();
+      }
+
+      if (preview) {
+        this.preview();
       }
     },
     initContainer: function initContainer() {
@@ -1685,9 +1690,10 @@
         translateY: -top
       }, imageData))));
       forEach(this.previews, function (element) {
-        var data = getData(element, DATA_PREVIEW);
-        var originalWidth = data.width;
-        var originalHeight = data.height;
+        element.style.width = '';
+        element.style.height = '';
+        var originalWidth = element.offsetWidth;
+        var originalHeight = element.offsetHeight;
         var newWidth = originalWidth;
         var newHeight = originalHeight;
         var ratio = 1;
@@ -1833,7 +1839,7 @@
           cropBoxData = this.getCropBoxData();
         }
 
-        this.render();
+        this.render(true);
 
         if (options.restore) {
           this.setCanvasData(forEach(canvasData, function (n, i) {

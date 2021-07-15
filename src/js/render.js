@@ -20,7 +20,7 @@ import {
 } from './utilities';
 
 export default {
-  render() {
+  render(preview = false) {
     this.initContainer();
     this.initCanvas();
     this.initCropBox();
@@ -28,6 +28,10 @@ export default {
 
     if (this.cropped) {
       this.renderCropBox();
+    }
+
+    if (preview) {
+      this.preview();
     }
   },
 

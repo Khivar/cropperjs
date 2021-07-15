@@ -45,7 +45,7 @@ export default {
         cropBoxData = this.getCropBoxData();
       }
 
-      this.render();
+      this.render(true);
 
       if (options.restore) {
         this.setCanvasData(forEach(canvasData, (n, i) => {

@@ -113,9 +113,10 @@ export default {
     }, imageData))));
 
     forEach(this.previews, (element) => {
-      const data = getData(element, DATA_PREVIEW);
-      const originalWidth = data.width;
-      const originalHeight = data.height;
+      element.style.width = '';
+      element.style.height = '';
+      const originalWidth = element.offsetWidth;
+      const originalHeight = element.offsetHeight;
       let newWidth = originalWidth;
       let newHeight = originalHeight;
       let ratio = 1;
